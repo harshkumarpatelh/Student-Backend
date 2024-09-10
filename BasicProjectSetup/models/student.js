@@ -34,7 +34,7 @@ const Students = sequelize.define("Students", {
     }
 }, {
     freezeTableName: true,
-    paranoid: false,
+    paranoid: true,
     modelName: "Students"
 });
 

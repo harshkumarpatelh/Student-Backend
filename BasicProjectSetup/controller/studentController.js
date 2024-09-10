@@ -1,5 +1,5 @@
 const Students = require("../models/student");
-const newStudentHandler = async (req, res) => {
+const newStudentHandler = async (req, res, next) => {
     try {
         const addStudent = await Students.create({
             firstName: req.body.firstName,
@@ -8,21 +8,23 @@ const newStudentHandler = async (req, res) => {
         });
         res.status(201).json({
             result: addStudent,
-            status: 'success'
+            status: 'success',
+            message: "Student Added Successfully"
         });
     }
     catch (err) {
-        res.status(500).json({
-            status: 'failure',
-            message: err
-        });
+        next(err);
     }
 }
 
 const getStudentHandler = async (req, res, next) => {
     try {
         const allStudent = await Students.findAll();
-        res.status(200).json({ allStudent });
+        res.status(200).json({
+            result: allStudent,
+            status: 'success',
+            massege: {}
+        });
     }
     catch (err) {
         next(err);
@@ -31,7 +33,7 @@ const getStudentHandler = async (req, res, next) => {
 }
 
 
-const updatedStudentHandler = async (req, res) => {
+const updatedStudentHandler = async (req, res, next) => {
     try {
         const id = req.params.id;
         const studentByPK = await Students.findByPk(id);
@@ -50,16 +52,36 @@ const updatedStudentHandler = async (req, res) => {
         });
     }
     catch (err) {
-        res.status(500).json({
-            status: 'failure',
-            message: err.message
-        });
+        next(err);
     }
 }
 
+
+const deleteStudentHandler = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const studentByPK = await Students.findByPk(id);
+        await studentByPK.destroy();
+        // await Students.destroy({
+        //     where: {
+        //     id: id,
+        //     },
+        // });
+        res.status(200).json({
+            result: {},
+            status: 'success',
+            message: "Student Deleted successfully"
+        });
+    }
+    catch (err) {
+        next(err);
+        // res.status(500).json({ Error: `${err}` });
+    }
+}
 
 module.exports = {
     newStudentHandler,
     getStudentHandler,
     updatedStudentHandler,
+    deleteStudentHandler,
 }
