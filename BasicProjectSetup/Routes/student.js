@@ -3,14 +3,14 @@ const { newStudentHandler,
     getStudentHandler,
     updatedStudentHandler,
     deleteStudentHandler
- } = require("../controller/studentController");
+} = require("../controller/studentController");
 const router = express.Router();
 
 
-router.get("/", getStudentHandler);
-router.post("/signup", newStudentHandler);
-router.put("/:id",updatedStudentHandler);
+router.get("/getstudentslisting", getStudentHandler);
+router.post("/studentsignup", newStudentHandler);
+router.put("/updatestudent/:id", updatedStudentHandler);
 
-router.delete("/:id", deleteStudentHandler);
+router.delete("/deletestudent/:id", deleteStudentHandler);
 
 module.exports = router;

@@ -15,6 +15,10 @@ module.exports = {
       docType: {
         type: Sequelize.INTEGER
       },
+      documentLink: {
+        type: Sequelize.STRING,
+        defaultValue: ""
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

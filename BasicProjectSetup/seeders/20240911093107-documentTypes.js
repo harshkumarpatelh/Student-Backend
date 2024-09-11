@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface) {
     const date = new Date();
-    await queryInterface.bulkInsert("DocumentTypes", [
+    await queryInterface.bulkInsert("documentTypes", [
       {
         type: 'Addhar Card',
         createdAt: date,
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.bulkDelete("DocumentTypes", null, {
+    await queryInterface.bulkDelete("documentTypes", null, {
       truncate: true
     });
   }

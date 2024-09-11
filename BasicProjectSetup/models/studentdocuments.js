@@ -13,13 +13,15 @@ const StudentDocuments = sequelize.define("studentDocuments", {
   },
   studentId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-    reference:{ model : Students, key:'id' }
+    references: { model: Students, key: 'id' }
   },
   docType: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-    reference: { model: DocumentTypes, key: 'id' }
+    references: { model: DocumentTypes, key: 'id' }
+  },
+  documentLink: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -39,10 +41,10 @@ const StudentDocuments = sequelize.define("studentDocuments", {
     modelName: "studentDocuments"
   });
 
-DocumentTypes.hasMany(StudentDocuments, { foreignKey : "docType" });
+DocumentTypes.hasMany(StudentDocuments, { foreignKey: "docType" });
 StudentDocuments.belongsTo(DocumentTypes, { foreignKey: "docType" });
 
-Students.hasMany(StudentDocuments,{foreignKey:'studentID'});
-StudentDocuments.belongsTo(Students, {foreingKey:'studentId'});
+Students.hasMany(StudentDocuments, { foreignKey: 'studentId' });
+StudentDocuments.belongsTo(Students, { foreingKey: 'studentId' });
 
 module.exports = StudentDocuments;

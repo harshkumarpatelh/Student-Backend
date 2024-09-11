@@ -2,7 +2,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require(".");
 
-const Students = sequelize.define("Students", {
+const Students = sequelize.define("students", {
     id: {
         allowNull: false,
         autoIncrement: true,
@@ -35,11 +35,7 @@ const Students = sequelize.define("Students", {
 }, {
     freezeTableName: true,
     paranoid: true,
-    modelName: "Students"
+    modelName: "students"
 });
 
-
-Students.associate = (models)=>{
-
-}
 module.exports = Students;
