@@ -3,14 +3,14 @@ const { newDocHandler,
     getDocHandler,
     updatedDocHandler,
     deleteDocHandler
- } = require("../controller/studentController");
+} = require("../controller/studentDocumentController");
 const router = express.Router();
 
 
 router.get("/", getDocHandler);
-router.post("/", newDocHandler);
-router.put("/:id",updatedDocHandler);
+// router.post("/", newDocHandler);
+// router.put("/:id",updatedDocHandler);
 
-router.delete("/:id", deleteDocHandler);
+// router.delete("/:id", deleteDocHandler);
 
 module.exports = router;

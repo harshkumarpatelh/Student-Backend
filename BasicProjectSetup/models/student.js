@@ -38,4 +38,8 @@ const Students = sequelize.define("Students", {
     modelName: "Students"
 });
 
+
+Students.associate = (models)=>{
+
+}
 module.exports = Students;
