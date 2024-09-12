@@ -1,4 +1,8 @@
 /** @type {import('sequelize-cli').Migration} */
+
+
+
+// migration for students table
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('students', {

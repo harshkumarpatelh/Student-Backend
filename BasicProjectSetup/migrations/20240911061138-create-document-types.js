@@ -1,5 +1,7 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+
+// migration for documentTypes table
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('documentTypes', {

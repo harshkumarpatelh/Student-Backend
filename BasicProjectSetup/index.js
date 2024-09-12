@@ -10,7 +10,10 @@ const app = express();
 
 app.use(express.json());
 
+// Route for student
 app.use("/api", studentRouter);
+
+// Route for document 
 app.use("/api", docRouter);
 
 app.use(ErrorHandler);

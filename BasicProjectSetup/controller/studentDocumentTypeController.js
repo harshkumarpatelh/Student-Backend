@@ -2,6 +2,8 @@ const { AppError } = require("../middleware/ErrorHadler");
 const DocumentTypes = require("../models/documenttypes");
 const StudentDocuments = require("../models/studentDocuments");
 
+
+// Get all entries of document type like pan, addhar etc. from 'documentTypes table'
 const getDocumentType = async (req, res, next) => {
     const data = await DocumentTypes.findAll();
 
@@ -16,6 +18,10 @@ const getDocumentType = async (req, res, next) => {
     });
 }
 
+
+// post data in 'studentDocuments table'
+// studentId -> foreign Key from students table
+// docType -> foreign Key from documentTypes table
 const addStudentDocument = async (req, res, next) => {
     const { studentId, docType, documentLink } = req.body;
 
@@ -46,7 +52,32 @@ const addStudentDocument = async (req, res, next) => {
     });
 }
 
+// Getting all type of document from 'documentTypes' table of a particular student through studentId 
+const getDocumentByStudentId = async (req, res, next) => {
+    const studentId = req.params.stuId;
+    const getDocByStudentId = await DocumentTypes.findAll({
+        include:
+        {
+            model: StudentDocuments,
+            where: {
+                studentId: studentId
+            }
+        }
+    })
+
+    if (!getDocByStudentId) {
+        return next(new AppError(500, "Document not found"));
+    }
+
+    res.status(200).json({
+        statu: "success",
+        result: getDocByStudentId,
+        message: "Successfully got documents type"
+    });
+}
+
 module.exports = {
     getDocumentType,
-    addStudentDocument
+    addStudentDocument,
+    getDocumentByStudentId,
 }

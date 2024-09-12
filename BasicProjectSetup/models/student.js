@@ -2,6 +2,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require(".");
 
+
+// model for students
 const Students = sequelize.define("students", {
     id: {
         allowNull: false,

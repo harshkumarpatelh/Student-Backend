@@ -1,6 +1,8 @@
 'use strict';
 const { DataTypes } = require("sequelize");
 const sequelize = require(".");
+
+// model for documentTypes table 
 const DocumentTypes = sequelize.define("documentTypes", {
   id: {
     type: DataTypes.INTEGER,
